@@ -39,7 +39,12 @@ app.post('/create-order', (req, res) => {
             res.json(order);  // Send Razorpay order object as response
         })
         .catch(error => {
-            res.status(500).json({ error: error.message });
+            console.error("Order creation failed:", error);
+            const errorMessage = error.message || (error.error && error.error.description) || "Unknown error";
+            res.status(500).json({ 
+                error: errorMessage,
+                raw: error 
+            });
         });
 });
 
