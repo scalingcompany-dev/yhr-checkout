@@ -6,9 +6,10 @@ const cors = require('cors');
 const app = express();
 
 // Razorpay credentials
+// Fallback to placeholders if env variables are not set, preventing startup crashes.
 const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET
+    key_id: process.env.RAZORPAY_KEY_ID || 'rzp_live_placeholder',
+    key_secret: process.env.RAZORPAY_KEY_SECRET || 'placeholder'
 });
 
 app.use(cors());
@@ -43,6 +44,12 @@ app.post('/create-order', (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+
+// Only listen when running locally, Vercel handles routing automatically
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
+
+module.exports = app;
