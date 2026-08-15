@@ -6,10 +6,9 @@ const cors = require('cors');
 const app = express();
 
 // Razorpay credentials
-// Fallback to placeholders if env variables are not set, preventing startup crashes.
 const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID || 'rzp_live_placeholder',
-    key_secret: process.env.RAZORPAY_KEY_SECRET || 'placeholder'
+    key_id: process.env.RAZORPAY_KEY_ID || 'rzp_live_KyhtrIyJ546bd2',
+    key_secret: process.env.RAZORPAY_KEY_SECRET || 'VnFb4ue9ryPCUVOtHy4G2fjr'
 });
 
 app.use(cors());
