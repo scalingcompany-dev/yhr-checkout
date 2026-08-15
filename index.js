@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Create Order Endpoint
 app.post('/create-order', (req, res) => {
-    const amount = 19900;  // Amount in paise
+    const amount = 5100;  // Amount in paise
     const currency = 'INR'; // Currency (INR)
     const receipt = `order_${Date.now()}`;  // Unique receipt ID
     const notes = {
@@ -40,9 +40,9 @@ app.post('/create-order', (req, res) => {
         .catch(error => {
             console.error("Order creation failed:", error);
             const errorMessage = error.message || (error.error && error.error.description) || "Unknown error";
-            res.status(500).json({ 
+            res.status(500).json({
                 error: errorMessage,
-                raw: error 
+                raw: error
             });
         });
 });
