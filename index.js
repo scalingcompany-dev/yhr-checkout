@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Create Order Endpoint
 app.post('/create-order', (req, res) => {
-    const amount = 5100;  // Amount in paise
+    const amount = 4900;  // Amount in paise
     const currency = 'INR'; // Currency (INR)
     const receipt = `order_${Date.now()}`;  // Unique receipt ID
     const notes = {
